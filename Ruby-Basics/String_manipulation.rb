@@ -19,5 +19,11 @@ puts "Original sentence: \"#{sentence}\""
 sentence = sentence.sub('the jungle', 'utopia') # - this method subtitutes a phrase/word in the sentence with the phrase give
 puts "Modified sentence: \"#{sentence}\""
 
-puts ' Methods available for the Strings:'
-puts sentence.methods
+# puts ' Methods available for the Strings:'
+# puts sentence.methods  #- will return all available methods for the string given "Sentence"
+
+# ? we can also get input from the user and manipulate it.
+print 'Enter your name: '
+first_name = gets.chomp! # *- chomp! will delete the default line break when the user clicks enter
+# ! in ruby we have to cast variables. From Integers we have to cast to String to show the output.
+puts "Your first name is: \"#{first_name.capitalize!}\" and its length is #{first_name.length}" # * we can chain methods.
