@@ -6,12 +6,16 @@ def operations(operation, num_1, num_2)
   puts "Operation #{operation} selected."
   if operation == "Multiply"
     puts num_1*num_2
+
   elsif operation == "Add"
     puts num_1+num_2
+
   elsif operation == "Subtract"
     puts num_1-num_2
+
   elsif operation == "Divide"
     puts num_1/num_2
+
   else
     puts "Please enter a valid operation."
   end
