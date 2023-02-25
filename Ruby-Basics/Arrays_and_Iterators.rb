@@ -6,7 +6,7 @@
  a = [1,2,3,4,5,6,7,8,9,10]
 print a.to_s + "\n\n"
 
-# ! =begin
+=begin
 # + in ruby we also have a class called range, it will give a range from the numbers given.
 
 x = 5..15
@@ -41,13 +41,32 @@ puts "a_string : #{a_string} \n - a_string_separator : #{a_string_separator}"
 # + From the string with a separator, we can change it to an array!
 b = a_string_separator.split("-")
 puts "b : #{b}"  #! Remember this will return a string!! items from a string will remain a string
-
+=end
 #! Iterators
+puts "--- for loop"
+array = (0..5).to_a                             # * we create a range and cast it to an array
+# + we can iterate over the elements of an array!
+for element in array                                  #* for (the item starting from 0) in the array do:
+  puts element
+end
 
+# ? The ruby prefered way is the "".each"
+puts "--- .each do:"
+array.each do |element|
+  print element
+end
+puts
+#¿ we can even do this on the same line : array.each {|element| puts element.to_f}
 
+# ? .select method - works on booleans!
 
-
-#! =end
+z = (1..100).to_a.shuffle
+#z.select { |x| x % 2 == 0 }  #* this will print out the even numbers on that array.a
+z.select do|element|
+  unless element % 2 == 0
+    print element.to_s + " "
+  end
+end
 
 
 
