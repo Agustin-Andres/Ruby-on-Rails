@@ -10,11 +10,9 @@ users = [
 
 def compare_user_input_to_database(user_username, user_password, user_database)
   user_database.each do |hash|
-    hash.each do |k, v|
-      puts "---- comparing #{k} to #{user_username} and #{v} to #{user_password} ----"
-      return true if k == user_username && v == user_password
-
-      return false
+    puts "#{hash[:username].class} - hash username class #{hash[:password]hash username cl}"
+    if hash[:username] == user_username && hash[:password] == user_password
+      puts "Correct username and password!!User #{hash[:username]} and password #{hash[:password]} "
     end
   end
 end
@@ -32,104 +30,9 @@ while attempts < 4
   username_input = gets.chomp
   print "\n Please enter the password: "
   password_input = gets.chomp
-  if compare_user_input_to_database(username_input, username_input, users)
-    puts "\n Success! You are now authenticated as: #{username_input}"
-    users.each { |k, v| print "\n your object is #{users[k]}" if v == username }
 
-  else
-    puts 'You have not entered a correct username or password.'
-    puts 'press n to try again, or q to quit.'
-    answer = gets.chomp.to_s.capitalize!
+  object_received = compare_user_input_to_database(username_input, username_input, users)
 
-    if answer == 'Q'
-      puts 'you have chosen to exit, Goodbye!'
-      attempts = 4
-    else
-      attempts += 1
-    end
-  end
+  puts "Object received: #{object_received}"
 
 end
-
-
-=begin
-"better-comments.tags": [
-
-
-        {
-            "tag": "!",
-            "color": "#EC1009",
-            "strikethrough": false,
-            "underline": true,
-            "backgroundColor": "transparent",
-            "bold": true,
-            "italic": false
-        },
-        {
-            "tag": "?",
-            "color": "#4751FF",
-            "strikethrough": false,
-            "underline": false,
-            "backgroundColor": "transparent",
-            "bold": false,
-            "italic": true
-        },
-        {
-            "tag": "//",
-            "color": "#474747",
-            "strikethrough": false,
-            "underline": false,
-            "backgroundColor": "transparent",
-            "bold": false,
-            "italic": true
-        },
-        {
-            "tag": "todo",
-            "color": "#FF8C00",
-            "strikethrough": false,
-            "underline": false,
-            "backgroundColor": "transparent",
-            "bold": true,
-            "italic": true
-        },
-        {
-            "tag": "*",
-            "color": "#216869",
-            "strikethrough": false,
-            "underline": false,
-            "backgroundColor": "transparent",
-            "bold": false,
-            "italic": true
-        },
-        {
-            "tag": "¿",
-            "color": "#F4AC45",
-            "strikethrough": false,
-            "underline": false,
-            "backgroundColor": "transparent",
-            "bold": false,
-            "italic": true
-        }
-        ,
-        {
-            "tag": "¡",
-            "color": "#465775",
-            "strikethrough": false,
-            "underline": false,
-            "backgroundColor": "transparent",
-            "bold": false,
-            "italic": true
-        },
-        {
-            "tag": "+",
-            "color": "#7E5AD8",
-            "strikethrough": false,
-            "underline": false,
-            "backgroundColor": "transparent",
-            "bold": false,
-            "italic": true
-        }
-
-
-    ]
-=end
