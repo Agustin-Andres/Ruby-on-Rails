@@ -10,12 +10,26 @@ users = [
 
 def compare_user_input_to_database(user_username, user_password, user_database)
   user_database.each do |hash|
-    puts "#{hash[:username].class} - hash username class #{hash[:password]hash username cl}"
-    if hash[:username] == user_username && hash[:password] == user_password
-      puts "Correct username and password!!User #{hash[:username]} and password #{hash[:password]} "
+   # puts "Comparing #{hash[:username]} to #{user_username} and  \"#{hash[:password]}\" to #{user_password}"
+    if hash[:username].to_s == user_username && hash[:password].to_s == user_password
+      return hash
     end
   end
+  return nil
 end
+
+def attempt_again (attempt)
+  puts "Would you like to try to login again?"
+  print "> "
+  answer = gets.chomp
+
+  return (attempt+1) if answer.include?("y")
+  if answer.include?("n")
+    puts "\nYou have chosen not to try again.\nGoodbye!"
+    return (attempt+4)
+  end
+end
+
 
 20.times { print '- ' }
 puts "\nWelcome to the authenticator!"
@@ -31,8 +45,25 @@ while attempts < 4
   print "\n Please enter the password: "
   password_input = gets.chomp
 
-  object_received = compare_user_input_to_database(username_input, username_input, users)
+  object_received = compare_user_input_to_database(username_input, password_input, users)
 
-  puts "Object received: #{object_received}"
+  #puts "Object received: #{object_received}"
+
+  unless object_received.nil?
+    puts "Login successful."
+    print "Your object : #{object_received}"
+    attempts = 4
+  else
+    puts "\nError, username or password incorrect."
+    unless attempts == 3
+      attempts = attempt_again(attempts)
+    else
+      attempts = 4
+      puts "You have exceeded the maximum number of attempts"
+    end
+  end
 
 end
+puts
+20.times { print '- ' }
+
