@@ -56,5 +56,5 @@ end
 # !----------------------------------------------------------------------------------------------------------------------
 
 all_clients_raw_data = get_all_clients()
-display_one_item_from_array
+#display_one_item_from_array
 
