@@ -35,7 +35,7 @@ def display_one_item_from_array(array)
   data_searched = gets.chomp
 
 
-  array.select do |client|
+  array.each do |raw_client_data|
     puts "comparing each client, currently with client #{client}"
 
     client.each do |item|
