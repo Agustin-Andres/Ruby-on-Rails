@@ -17,8 +17,8 @@ def get_unparsed_data(page)
   request = Net::HTTP::Get.new(url)
   request["accept"] = "application/json"
 
-  request["Authorization"] = "2f9fa2fd-23a4-4f2c-beac-1a1093563a31" # ! currently in HEY
-  # ! jetcom - 9a80b05c-c42a-417c-b58b-37f3db55d818
+  request["Authorization"] = "9a80b05c-c42a-417c-b58b-37f3db55d818"
+  # ! jetcom -    "2f9fa2fd-23a4-4f2c-beac-1a1093563a31" # ! currently in HEY
   response = http.request(request)
 
   # ¿ parsing the response from a string to a Hash to separate the diferent values (status, meta, data )
@@ -101,11 +101,10 @@ def get_all_clients()
     total_clients_array << client_data(current_page)
   end while (total_pages != current_page)
 
-  puts "\tMETADATA\n> Total clients: #{total_clients}\t||\t Total pages: #{total_pages}"
+  puts "\tData received:\n> Total clients: #{total_clients}\t||\t Total pages: #{total_pages}"
   return total_clients_array
 end
 
+
 # !----------------------------------------------------------------------------------------------------------------------
 
-# ? dispays all the clients
-display_raw_clients(get_all_clients)
