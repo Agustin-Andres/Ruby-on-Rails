@@ -108,9 +108,6 @@ end
 
 # !----------------------------------------------------------------------------------------------------------------------
 
-<<<<<<<< HEAD:Ruby-Api-Playground/Clients/getClients2.rb
 # ? dispays all the clients
 display_raw_clients(get_all_clients)
 # !----------------------------------------------------------------------------------------------------------------------
-========
->>>>>>>> 1af7df59a4e321801de199809ead870f685e25fd:Ruby-Api-Playground/Clients/get_clients.rb
