@@ -44,9 +44,13 @@ def display_one_item_from_array(array)
     puts
     20.times { print '. . . . . . . . . . . . . . . . . ' }
     item.each do |item_attribute1, item_attribute2|
-      print item_attribute1.to_s + ' : ' + item_attribute2.to_s
-      puts "\nitem_attribute1 : #{item_attribute1.class}\t item_attribute2 :#{item_attribute2.class}"
-      puts
+      if item_attribute2.nil?
+        print "#{item['name']}: does not contain data in the \"#{item_attribute1}\" field \n"
+      else
+        print item_attribute1.to_s + ' : ' + item_attribute2.to_s
+        # puts "\nitem_attribute1 : #{item_attribute1.class}\t item_attribute2 :#{item_attribute2.class}"
+        puts
+      end
     end
     20.times { print '. . . . . . . . . . . . . . . . . ' }
     puts
