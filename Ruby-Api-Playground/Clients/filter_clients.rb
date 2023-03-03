@@ -30,14 +30,13 @@ require_relative 'get_clients'
 #   "https://cloud.wispro.co/portal_api/auth/6cWxeJrT027B_vRnhqHFMg"}
 #
 
-# ¿ Raw array containing arrays : array[0].
-
 # ? we filter out the array with sthe parameters given.
 # + this method receives the full raw array.
-def display_one_item_from_array(array)
+def display_data_legibly
   # print "How would you like to filter the clients?\n> "
   # data_searched = gets.chomp
   # + we search inside the array evaluating array (client) by array(client), this will return each client and their info.
+  array = get_all_clients[0]
   array.each do |item|
     # + "Item" here is the WHOLE client, the client with all their data.
     # puts "comparing each item, currently with item #{item}"
@@ -61,12 +60,22 @@ def print_raw_array(array)
   puts "array class: #{array.class}\n\n\t>RAW Array:<\n #{array[0]} "
 end
 
+def return_client_by_id(client_id)
+  client_id = client_id.to_i
+  # print "How would you like to filter the clients?\n> "
+  # data_searched = gets.chomp
+  # + we search inside the array evaluating array (client) by array(client), to return client by their ID
+  array = get_all_clients[0]
+  array.each do |item|
+    # + "Item" here is the WHOLE client, the client with all their data.
+    # puts "comparing each item, currently with item #{item}"
+    puts
+    # 20.times { print '. . . . . . . . . . . . . . . . . ' }
+    item.each do |item_attribute1, item_attribute2|
+      # puts "\t> Comparing #{item_attribute1} (#{item_attribute1.class}) with public_id and #{client_id} with #{item_attribute2} (#{item_attribute2.class})"
+      pp item if item_attribute1 == 'public_id' && client_id == item_attribute2
+    end
+  end
+end
+
 # !----------------------------------------------------------------------------------------------------------------------
-
-# ¿ the API returns the final arrays inside an array inside another array- we filter out for it to just return an array containing arrrays.
-all_clients_raw_data = get_all_clients[0]
-
-puts
-display_one_item_from_array = display_one_item_from_array(all_clients_raw_data)
-
-# print_raw_array(all_clients_raw_data)
