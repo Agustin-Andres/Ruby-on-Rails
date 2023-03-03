@@ -30,31 +30,39 @@ require_relative 'get_clients'
 #   "https://cloud.wispro.co/portal_api/auth/6cWxeJrT027B_vRnhqHFMg"}
 #
 
+# ¿ Raw array containing arrays : array[0].
+
+# ? we filter out the array with sthe parameters given.
+# + this method receives the full raw array.
 def display_one_item_from_array(array)
-  print "How would you like to filter the clients?\n> "
-  data_searched = gets.chomp
-
-
-  array.each do |raw_client_data|
-    puts "comparing each client, currently with client #{client}"
-
-    client.each do |item|
-      puts "comparing each item, currently with item #{item}"
-      puts
-      20.times{print ". . . . . . . . . . . . . . . . . "}
-      item.each do |item_attribute1,item_attribute2 |
-        print item_attribute1.to_s + " : " + item_attribute2.to_s
-        puts
-      end
-      20.times{print ". . . . . . . . . . . . . . . . . "}
+  # print "How would you like to filter the clients?\n> "
+  # data_searched = gets.chomp
+  # + we search inside the array evaluating array (client) by array(client), this will return each client and their info.
+  array.each do |item|
+    # + "Item" here is the WHOLE client, the client with all their data.
+    # puts "comparing each item, currently with item #{item}"
+    puts
+    20.times { print '. . . . . . . . . . . . . . . . . ' }
+    item.each do |item_attribute1, item_attribute2|
+      print item_attribute1.to_s + ' : ' + item_attribute2.to_s
+      puts "\nitem_attribute1 : #{item_attribute1.class}\t item_attribute2 :#{item_attribute2.class}"
       puts
     end
+    20.times { print '. . . . . . . . . . . . . . . . . ' }
+    puts
   end
+end
+
+def print_raw_array(array)
+  puts "array class: #{array.class}\n\n\t>RAW Array:<\n #{array[0]} "
 end
 
 # !----------------------------------------------------------------------------------------------------------------------
 
-all_clients_raw_data = get_all_clients
-# display_one_item_from_array
+# ¿ the API returns the final arrays inside an array inside another array- we filter out for it to just return an array containing arrrays.
+all_clients_raw_data = get_all_clients[0]
 
-filtered_array = display_one_item_from_array(all_clients_raw_data)
+puts
+display_one_item_from_array = display_one_item_from_array(all_clients_raw_data)
+
+# print_raw_array(all_clients_raw_data)
