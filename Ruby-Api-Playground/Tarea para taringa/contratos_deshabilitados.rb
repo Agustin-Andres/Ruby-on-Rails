@@ -7,9 +7,7 @@ require "json"
 
 # metodo para obtener todos los contratos por pagina.
 def get_all_data(page)
-  require "uri"
-  require "net/http"
-  require "openssl"
+
 
   url = URI("https://www.cloud.wispro.co/api/v1/contracts?page=" + page.to_s + "&per_page=100")
 
