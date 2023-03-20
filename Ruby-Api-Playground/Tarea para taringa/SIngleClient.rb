@@ -20,6 +20,7 @@ def get_single_client(uuid)
   pp response
 end
 
+#update an existing client
 def update_client(uuid)
   url = URI("https://www.cloud.wispro.co/api/v1/clients/#{uuid}")
 
@@ -40,8 +41,30 @@ def update_client(uuid)
   puts updated_client
 end
 
-update_client("7501d2e7-9382-4117-8af0-3894481d49ea")
+#
+def create_client(name)
+  url = URI("https://www.cloud.wispro.co/api/v1/clients?name=#{name}")
 
-get_single_client("7501d2e7-9382-4117-8af0-3894481d49ea")
+  http = Net::HTTP.new(url.host, url.port)
+  http.use_ssl = true
+
+  request = Net::HTTP::Post.new(url)
+  request["accept"] = "application/json"
+  request["Authorization"] = "f124388a-43bb-4059-a605-f54453a3d4d1"
+  request.body = {
+    'email': "Agustin.avellaneda20@gmail.com",
+    'phone': "2614676938",
+  }.to_json
+
+  response = http.request(request)
+  puts response.read_body
+end
+
+
+#update_client("7501d2e7-9382-4117-8af0-3894481d49ea")
+
+#get_single_client("7501d2e7-9382-4117-8af0-3894481d49ea")
 20.times { print "- - - - " }
 puts
+#create_client("cliente API 1 ")
+get_single_client("ebac08b6-2361-4c3f-b587-47a683852e44")
