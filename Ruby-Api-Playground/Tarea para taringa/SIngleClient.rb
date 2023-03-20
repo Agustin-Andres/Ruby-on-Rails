@@ -60,6 +60,25 @@ def create_client(name)
   puts response.read_body
 end
 
+def filter_by_name()
+  url = URI("https://www.cloud.wispro.co/api/v1/clients/")
+  params = {
+    name_unaccent_cont: "agustin",
+    national_identification_number_eq: "42422422",
+  }
+  url.query = URI.encode_www_form(params)
+
+  http = Net::HTTP.new(url.host, url.port)
+  http.use_ssl = true
+
+  request = Net::HTTP::Get.new(url)
+  request["Accept"] = "application/json"
+  request["Authorization"] = "f124388a-43bb-4059-a605-f54453a3d4d1"
+
+  response = http.request(request)
+  response = JSON.parse(response.body)
+  pp response
+end
 
 #update_client("7501d2e7-9382-4117-8af0-3894481d49ea")
 
@@ -67,4 +86,6 @@ end
 20.times { print "- - - - " }
 puts
 #create_client("cliente API 1 ")
-get_single_client("ebac08b6-2361-4c3f-b587-47a683852e44")
+#get_single_client("ebac08b6-2361-4c3f-b587-47a683852e44")
+
+filter_by_name
