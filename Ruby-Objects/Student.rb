@@ -4,12 +4,17 @@
 class Student
   # ¿ we can use attr_accessor to get and set all the identities (instance variables) of the class:
   attr_accessor :first_name, :last_name, :email, :hobby
+  # ¿ attr_reader only allows us to read the identity (instance variables)
+  attr_reader :id
+  # ! if we make an identity readable only - we have to set it. we often do this in INITIALIZE
 
-  # + here we have instance variables belonging to this class.
-  @first_name
-  @last_name
-  @email
-  @hobby
+  def initialize(first_name, last_name, email, hobby)
+    @first_name = first_name
+    @last_name = last_name
+    @email = email
+    @hobby = hobby
+    @id = "1"
+  end
 
   # ? Here we have the methods beloging to this class we can call upon.
   # ? these are getters
@@ -32,21 +37,23 @@ class Student
 
   # + by default the "to_s" method will print whatever we asign to it when we call the raw class.
   def to_s
-    "First name: #{@first_name}\n Last name: #{@last_name}"
+    " First name: #{@first_name}\n Last name: #{@last_name}\n Email: #{@email}\n Hobby: #{@hobby}\n ID: #{@id}"
   end
 end
 
 # ----------------------------------------------------------------------
-agustin = Student.new
+
 print "Enter the first name \n> "
 first_name = gets.chomp.to_s
 print "Enter the last name \n> "
 last_name = gets.chomp.to_s
+print "Enter the email \n> "
+email = gets.chomp.to_s
+print "Enter the students hobby \n> "
+hobby = gets.chomp.to_s
 
-agustin.first_name = first_name
-agustin.last_name = last_name
+agustin = Student.new(first_name, last_name, email, hobby)
 
 20.times { print ". . . . . . " }
 puts
-puts agustin.first_name
-puts agustin.last_name
+puts agustin
