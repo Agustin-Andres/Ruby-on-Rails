@@ -10,7 +10,7 @@ class Service_students
     @first_name = set_first_name()
     @last_name = set_last_name()
     @email = set_email()
-    @password = BCrypt::Password.create(set_password)
+    @password = set_password
     @id = id
 
     student = Student.new(@first_name, @last_name, @email, @password, @id)
@@ -20,10 +20,11 @@ class Service_students
   def edit_student()
     continue = false
     loop do
+      system("clear")
       10.times { print ". . . . . " }
       puts
-      puts "1 - Edit first name\n2 - Edit last name\n3 - Edit email or edit password\n4 - Print Student\n5 - exit"
-      print "Enter what you wish to edit: "
+      puts "1 - Edit first name\n2 - Edit last name\n3 - Edit email or edit password\n4 - Print Student\n5 - Exit"
+      print "Enter what you wish to do: "
       option_selected = gets.chomp.to_s
       puts
       10.times { print ". . . . . " }
@@ -55,16 +56,8 @@ class Service_students
   def verify_password()
     print "\nPlease enter your password :"
     entered_password = gets.chomp.to_s
-    original_password = BCrypt::Password.new(@password)
 
-    puts "original_password = #{original_password} and its class = #{original_password.class}"
-    puts "entered_password = #{entered_password} and its class = #{entered_password.class}"
-
-    if original_password == "123"
-      puts "original_password = #{original_password} and 123 class = #{"123".class}"
-    end
-
-    if entered_password.to_s == original_password.to_s
+    if BCrypt::Password.new(@password) == entered_password
       puts "Successfully entered your password.\n Change email or password or both?"
       answer = gets.chomp.to_s
       if answer.include?("both")
@@ -103,13 +96,15 @@ class Service_students
     verification = gets.chomp.to_s
 
     if verification == password
-      return password.to_s
+      return BCrypt::Password.create(password)
     else
       set_password()
     end
   end
 
   def to_s
-    puts " -First name: #{@first_name}\n -Last name: #{@last_name}\n -Email: #{@email}\n -ID: #{@id}\n pass:#{@password}"
+    puts " -First name: #{@first_name}\n -Last name: #{@last_name}\n -Email: #{@email}\n -ID: #{@id}"
   end
 end
+
+
